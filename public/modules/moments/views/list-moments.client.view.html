@@ -1,0 +1,19 @@
+<section data-ng-controller="MomentsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Moments</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="moment in moments" data-ng-href="#!/moments/{{moment._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="moment.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="moment.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="moment.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!moments.$resolved || moments.length">
+    	No Moments yet, why don't you <a href="/#!/moments/create">create one</a>?
+    </div>
+</section>

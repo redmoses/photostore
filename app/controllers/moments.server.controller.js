@@ -5,102 +5,102 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Photo = mongoose.model('Photo'),
+	Moment = mongoose.model('Moment'),
 	_ = require('lodash');
 
 /**
- * Create a Photo
+ * Create a Moment
  */
 exports.create = function(req, res) {
-	var photo = new Photo(req.body);
-	photo.user = req.user;
+	var moment = new Moment(req.body);
+	moment.user = req.user;
 
-	photo.save(function(err) {
+	moment.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(photo);
+			res.jsonp(moment);
 		}
 	});
 };
 
 /**
- * Show the current Photo
+ * Show the current Moment
  */
 exports.read = function(req, res) {
-	res.jsonp(req.photo);
+	res.jsonp(req.moment);
 };
 
 /**
- * Update a Photo
+ * Update a Moment
  */
 exports.update = function(req, res) {
-	var photo = req.photo ;
+	var moment = req.moment ;
 
-	photo = _.extend(photo , req.body);
+	moment = _.extend(moment , req.body);
 
-	photo.save(function(err) {
+	moment.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(photo);
+			res.jsonp(moment);
 		}
 	});
 };
 
 /**
- * Delete an Photo
+ * Delete an Moment
  */
 exports.delete = function(req, res) {
-	var photo = req.photo ;
+	var moment = req.moment ;
 
-	photo.remove(function(err) {
+	moment.remove(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(photo);
+			res.jsonp(moment);
 		}
 	});
 };
 
 /**
- * List of Photos
+ * List of Moments
  */
 exports.list = function(req, res) { 
-	Photo.find().sort('-created').populate('user', 'displayName').exec(function(err, photos) {
+	Moment.find().sort('-created').populate('user', 'displayName').exec(function(err, moments) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.jsonp(photos);
+			res.jsonp(moments);
 		}
 	});
 };
 
 /**
- * Photo middleware
+ * Moment middleware
  */
-exports.photoByID = function(req, res, next, id) { 
-	Photo.findById(id).populate('user', 'displayName').exec(function(err, photo) {
+exports.momentByID = function(req, res, next, id) { 
+	Moment.findById(id).populate('user', 'displayName').exec(function(err, moment) {
 		if (err) return next(err);
-		if (! photo) return next(new Error('Failed to load Photo ' + id));
-		req.photo = photo ;
+		if (! moment) return next(new Error('Failed to load Moment ' + id));
+		req.moment = moment ;
 		next();
 	});
 };
 
 /**
- * Photo authorization middleware
+ * Moment authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.photo.user.id !== req.user.id) {
+	if (req.moment.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
 	next();

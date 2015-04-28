@@ -7,19 +7,13 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Photo Schema
+ * Moment Schema
  */
-var PhotoSchema = new Schema({
-	title: {
+var MomentSchema = new Schema({
+	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Photo title',
-		trim: true
-	},
-	path: {
-		type: String,
-		default: '',
-		required: 'Please select a photo to upload',
+		required: 'Please fill Moment name',
 		trim: true
 	},
 	created: {
@@ -32,4 +26,4 @@ var PhotoSchema = new Schema({
 	}
 });
 
-mongoose.model('Photo', PhotoSchema);
+mongoose.model('Moment', MomentSchema);
