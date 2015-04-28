@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    formidable = require('formidable'),
+    fs = require('fs');
 
 /**
  * Create a Uploader
@@ -12,37 +14,38 @@ var mongoose = require('mongoose'),
 exports.upload = function(req, res) {
     var form = new formidable.IncomingForm(),
         file_path = '',
-        file_size = '';
+        file_size = '',
+        files =[];
 
     var user_name = req.user.username;
     console.log('upload function called by ' + user_name);
     var path = 'uploads/' + user_name;
 
-    var mkdirSync = function (path) {
-        try {
-            fs.mkdirSync(path);
-        } catch (e) {
-            if (e.code !== 'EEXIST') throw e;
-        }
-    };
+    try {
+        fs.mkdirSync(path);
+    } catch (e) {
+        if (e.code !== 'EEXIST') throw e;
+    }
 
     form.uploadDir = path;
 
     form.on('file', function (name, file) {
         file_path = file.path;
         file_size = file.size;
+        files.push(file);
     });
 
     form.on('end', function () {
         console.log('-> upload done');
         //fs.rename(this.openedFiles[0].path,image_path);
+
         var data = {
             files: [
                 {
                     name: 'test.jpg',
-                    size: '99',
-                    url: 'http://localhost/uploads/test.jpg',
-                    thumbnailUrl: 'http://localhost/test.jpg',
+                    size: file_size,
+                    url: 'http://localhost/' + file_path,
+                    thumbnailUrl: 'http://localhost/' + file_path,
                     deleteUrl: 'http://localhost/upload/test.jpg/delete',
                     deleteType: 'DELETE'
                 }

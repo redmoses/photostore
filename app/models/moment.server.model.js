@@ -10,12 +10,21 @@ var mongoose = require('mongoose'),
  * Moment Schema
  */
 var MomentSchema = new Schema({
-	name: {
+	title: {
 		type: String,
 		default: '',
-		required: 'Please fill Moment name',
+		required: 'Please fill Moment title',
 		trim: true
 	},
+	photos: [
+		{
+			file_path: {
+				type: String,
+				default: '',
+				trim: true
+			}
+		}
+	],
 	created: {
 		type: Date,
 		default: Date.now

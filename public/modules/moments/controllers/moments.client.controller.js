@@ -9,7 +9,7 @@ angular.module('moments').controller('MomentsController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Moment object
 			var moment = new Moments ({
-				name: this.name
+				title: this.title
 			});
 
 			// Redirect after save
@@ -17,7 +17,7 @@ angular.module('moments').controller('MomentsController', ['$scope', '$statePara
 				$location.path('moments/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.title = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
