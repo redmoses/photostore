@@ -30,7 +30,7 @@ npm install
 ```
 
 * When installing bower packages the process would face conflicts twice. The first conflict would be about angular. 
-Choose version 1.2.28. The second conflict would be about angular-bootstrap. Choose version 0.11.2
+Choose version 1.2.28. The second conflict would be about angular-bootstrap. Choose version 0.11.2.
 
 
 * Finally run the app

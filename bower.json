@@ -4,14 +4,14 @@
   "description": "A private photo store with NodeJS",
   "dependencies": {
     "bootstrap": "~3",
-    "angular": "1.2.28",
+    "angular": "~1.2",
     "angular-resource": "~1.2",
     "angular-mocks": "~1.2",
     "angular-cookies": "~1.2",
     "angular-animate": "~1.2",
     "angular-touch": "~1.2",
     "angular-sanitize": "~1.2",
-    "angular-bootstrap": "0.11.2",
+    "angular-bootstrap": "~0.11.2",
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.11",
     "angular-bootstrap-lightbox": "~0.6.0"
