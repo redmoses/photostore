@@ -6,50 +6,42 @@
 var mongoose = require('mongoose'),
     _ = require('lodash'),
     formidable = require('formidable'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
+
 
 /**
- * Create a Uploader
+ * Upload file
  */
 exports.upload = function(req, res) {
     var form = new formidable.IncomingForm(),
         file_path = '',
-        file_size = '',
-        files =[];
+        file_size = '';
 
     var user_name = req.user.username;
     console.log('upload function called by ' + user_name);
-    var path = 'uploads/' + user_name;
+    var uploadDir = 'public/uploads/' + user_name;
 
     try {
-        fs.mkdirSync(path);
+        fs.mkdirSync(uploadDir);
     } catch (e) {
         if (e.code !== 'EEXIST') throw e;
     }
 
-    form.uploadDir = path;
+    form.uploadDir = uploadDir;
 
     form.on('file', function (name, file) {
         file_path = file.path;
         file_size = file.size;
-        files.push(file);
     });
 
     form.on('end', function () {
         console.log('-> upload done');
-        //fs.rename(this.openedFiles[0].path,image_path);
-
+        var file_name = path.basename(this.openedFiles[0].path);
         var data = {
-            files: [
-                {
-                    name: 'test.jpg',
-                    size: file_size,
-                    url: 'http://localhost/' + file_path,
-                    thumbnailUrl: 'http://localhost/' + file_path,
-                    deleteUrl: 'http://localhost/upload/test.jpg/delete',
-                    deleteType: 'DELETE'
-                }
-            ]};
+            url: req.protocol + '://' + req.get('host') + '/uploads/' + user_name + '/' + file_name,
+            message: 'File uploaded'
+        };
 
         res.jsonp(data);
     });

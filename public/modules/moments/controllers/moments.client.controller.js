@@ -1,66 +1,85 @@
 'use strict';
 
 // Moments controller
-angular.module('moments').controller('MomentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Moments',
-	function($scope, $stateParams, $location, Authentication, Moments) {
-		$scope.authentication = Authentication;
+angular.module('moments').controller('MomentsController',
+    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload',
+        function ($scope, $stateParams, $location, Authentication, Moments, Upload) {
+            $scope.authentication = Authentication;
 
-		// Create new Moment
-		$scope.create = function() {
-			// Create new Moment object
-			var moment = new Moments ({
-				name: this.name
-			});
+            $scope.percent = '';
+            $scope.files = [];
 
-			// Redirect after save
-			moment.$save(function(response) {
-				$location.path('moments/' + response._id);
+            // Create new Moment
+            $scope.create = function () {
+                // Create new Moment object
+                var moment = new Moments({
+                    title: this.title
+                });
 
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+                // Redirect after save
+                moment.$save(function (response) {
+                    $location.path('moments/' + response._id);
 
-		// Remove existing Moment
-		$scope.remove = function(moment) {
-			if ( moment ) { 
-				moment.$remove();
+                    // Clear form fields
+                    $scope.title = '';
+                    $scope.photo = '';
+                    $scope.message = '';
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            };
 
-				for (var i in $scope.moments) {
-					if ($scope.moments [i] === moment) {
-						$scope.moments.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.moment.$remove(function() {
-					$location.path('moments');
-				});
-			}
-		};
+            // Remove existing Moment
+            $scope.remove = function (moment) {
+                if (moment) {
+                    moment.$remove();
 
-		// Update existing Moment
-		$scope.update = function() {
-			var moment = $scope.moment;
+                    for (var i in $scope.moments) {
+                        if ($scope.moments [i] === moment) {
+                            $scope.moments.splice(i, 1);
+                        }
+                    }
+                } else {
+                    $scope.moment.$remove(function () {
+                        $location.path('moments');
+                    });
+                }
+            };
 
-			moment.$update(function() {
-				$location.path('moments/' + moment._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+            // Update existing Moment
+            $scope.update = function () {
+                var moment = $scope.moment;
 
-		// Find a list of Moments
-		$scope.find = function() {
-			$scope.moments = Moments.query();
-		};
+                moment.$update(function () {
+                    $location.path('moments/' + moment._id);
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            };
 
-		// Find existing Moment
-		$scope.findOne = function() {
-			$scope.moment = Moments.get({ 
-				momentId: $stateParams.momentId
-			});
-		};
-	}
-]);
+            // Find a list of Moments
+            $scope.find = function () {
+                $scope.moments = Moments.query();
+            };
+
+            // Find existing Moment
+            $scope.findOne = function () {
+                $scope.moment = Moments.get({
+                    momentId: $stateParams.momentId
+                });
+            };
+
+            // Upload image
+            $scope.message = '';
+            $scope.photo = '';
+            $scope.uploadFile = function () {
+                $scope.message = 'Uploading file...';
+                var file = $scope.momentPhoto;
+                Upload.uploadFile(file).then(function(data){
+                   $scope.message = data.message;
+                   $scope.photo = data.url;
+                });
+            };
+
+        }
+    ]);

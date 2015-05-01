@@ -3,12 +3,31 @@
         <h1>New Moment</h1>
     </div>
     <div class="col-md-12">
-        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+        <form class="form-horizontal" data-ng-submit="create()" enctype="multipart/form-data"
+              method="post" data-ng-model="momentsForm" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
+                    <label class="control-label" for="title">Title</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
+                        <input type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="photo">Photo URL</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="photo" id="photo" class="form-control" placeholder="Photo URL" required>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-show="photo != ''">
+                    {{message}}&nbsp;
+                    <!--<a href="{{ fileUrl }}" data-ng-show="fileUrl != ''" target="_blank">Open file</a>-->
+                    <img src="{{ photo }}" height="50px" width="50px"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="upload">Upload Photo</label>
+                    <div class="controls">
+                        <input id="upload" name="upload" data-ng-model="upload"
+                               type="file" file-model="momentPhoto">
                     </div>
                 </div>
                 <div class="form-group">

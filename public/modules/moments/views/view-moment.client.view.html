@@ -1,6 +1,8 @@
 <section data-ng-controller="MomentsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="moment.name"></h1>
+		<h1 data-ng-bind="moment.title"></h1>
+		<br />
+		<img src="{{ moment.photo }}">
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
 		<a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
