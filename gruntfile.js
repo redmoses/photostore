@@ -139,8 +139,19 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: 'karma.conf.js'
 			}
+		},
+		copy: {
+			main:{
+				expand: true,
+				flatten: true,
+				src: ['public/lib/bootstrap/dist/fonts/*'],
+				dest: 'public/dist/',
+				filter: 'isFile'
+			}
 		}
 	});
+
+
 
 	// Load NPM tasks
 	require('load-grunt-tasks')(grunt);
@@ -170,7 +181,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin', 'copy']);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
