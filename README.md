@@ -6,4 +6,4 @@ application that lets users login using the site's own authentication system alo
 using other social networks.
 
 ### Demo
-I have temporarily deployed a demo of the app in this location: http://photo.redmoses.me
+I have temporarily deployed a demo of the app in this location: http://phpioto.redmoses.me
