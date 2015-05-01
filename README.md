@@ -5,6 +5,9 @@ This project is an attempt for learning Node.js. I chose MeanJS as the scaffoldi
 application that lets users login using the site's own authentication system along with open authentication 
 using other social networks.
 
+### Prerequisite
+You must have MongoDB installed in your system.
+
 ### Running the application
 To run the application you can follow these steps 
 
@@ -26,7 +29,8 @@ cd photostore
 npm install
 ```
 
-* When installing bower packages the process would face conflicts twice. In both the conflicts choose the option 1.
+* When installing bower packages the process would face conflicts twice. The first conflict would be about angular. 
+Choose version 1.2.28. The second conflict would be about angular-bootstrap. Choose version 0.11.2
 
 
 * Finally run the app

@@ -10,7 +10,7 @@
   "scripts": {
     "start": "grunt",
     "test": "grunt test",
-    "postinstall": "bower install"
+    "postinstall": "bower install --config.interactive=false"
   },
   "repository": {
     "type": "git",
