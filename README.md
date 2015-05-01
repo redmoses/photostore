@@ -23,8 +23,11 @@ cd photostore
 * Install dependencies
 
 ```bash
-npm install && bower install
+npm install
 ```
+
+* When installing bower packages the process would face conflicts twice. In both the conflicts choose the option 1.
+
 
 * Finally run the app
 
