@@ -15,7 +15,7 @@ module.exports = {
 			css: [
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css',
-				'public/lib/bootstrap/dist/css/bootstrap.min.css'
+				'public/modules/core/css/bootstrap.min.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -30,8 +30,6 @@ module.exports = {
 				'public/lib/plupload/js/plupload.full.min.js',
 				'public/lib/angular-plupload/dist/angular-plupload.min.js',
 				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js'
-
-
 			]
 		},
 		css: [
