@@ -5,10 +5,6 @@ angular.module('moments').config(['$stateProvider',
 	function($stateProvider) {
 		// Moments state routing
 		$stateProvider.
-		state('uploader', {
-			url: '/uploader',
-			templateUrl: 'modules/moments/views/uploader.client.view.html'
-		}).
 		state('listMoments', {
 			url: '/moments',
 			templateUrl: 'modules/moments/views/list-moments.client.view.html'
