@@ -145,7 +145,7 @@ module.exports = function(grunt) {
 				expand: true,
 				flatten: true,
 				src: ['public/lib/bootstrap/dist/fonts/*'],
-				dest: 'public/dist/',
+				dest: 'public/dist/fonts',
 				filter: 'isFile'
 			}
 		}
