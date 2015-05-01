@@ -2,23 +2,22 @@
 
 // Moments controller
 angular.module('moments').controller('MomentsController',
-    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload',
-        function ($scope, $stateParams, $location, Authentication, Moments, Upload) {
+    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox',
+        function ($scope, $stateParams, $location, Authentication, Moments, Upload, Lightbox) {
             $scope.authentication = Authentication;
-
-            $scope.percent = '';
-            $scope.files = [];
 
             // Create new Moment
             $scope.create = function () {
                 // Create new Moment object
                 var moment = new Moments({
-                    title: this.title
+                    title: this.title,
+                    photo: this.photo
                 });
 
                 // Redirect after save
                 moment.$save(function (response) {
-                    $location.path('moments/' + response._id);
+                    //$location.path('moments/' + response._id);
+                    $location.path('moments');
 
                     // Clear form fields
                     $scope.title = '';
@@ -51,7 +50,8 @@ angular.module('moments').controller('MomentsController',
                 var moment = $scope.moment;
 
                 moment.$update(function () {
-                    $location.path('moments/' + moment._id);
+                    $location.path('moments');
+                    $scope.openLightBox(moment.photo, moment.title);
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
@@ -78,8 +78,17 @@ angular.module('moments').controller('MomentsController',
                 Upload.uploadFile(file).then(function(data){
                    $scope.message = data.message;
                    $scope.photo = data.url;
+                   $scope.moment.photo = $scope.photo;
                 });
             };
 
+            // Open Image in LightBox
+            $scope.openLightBox = function (photo, title) {
+                var photos = [{
+                    'url': photo,
+                    'caption': title
+                }];
+                Lightbox.openModal(photos, 0);
+            };
         }
     ]);

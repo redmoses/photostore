@@ -5,18 +5,55 @@
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="moment.name" id="name" class="form-control" placeholder="Name" required>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <label class="control-label" for="title">Title</label>
+
+                        <div class="controls">
+                            <input type="text" data-ng-model="moment.title" id="title" class="form-control"
+                                   placeholder="Title"
+                                   required>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                <br/>
+                <!--<div class="form-group">-->
+                <!--<label class="control-label" for="title">Title</label>-->
+                <!--<div class="controls">-->
+                <!--<input type="text" data-ng-model="moment.title" id="title" class="form-control" placeholder="Title" required>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <img src="{{ moment.photo }}" class="img-thumbnail">
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3" data-ng-show="photo != ''">
+                        {{message}}&nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <label class="control-label" for="upload">Upload a new photo</label>
+
+                        <div class="controls">
+                            <input id="upload" name="upload" data-ng-model="upload"
+                                   type="file" file-model="momentPhoto">
+                        </div>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <input type="submit" value="Update" class="btn btn-default">
+                    </div>
+                </div>
+
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

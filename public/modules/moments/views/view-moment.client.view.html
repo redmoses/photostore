@@ -1,17 +1,24 @@
 <section data-ng-controller="MomentsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="moment.title"></h1>
+		<h3 data-ng-bind="moment.title"></h3>
 		<br />
-		<img src="{{ moment.photo }}">
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
-		<a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
+		<a data-ng-click="openLightBox(moment.photo, moment.title)"  class="thumbnail">
+			<img src="{{ moment.photo }}" height="100px" width="100px">
 		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
+
+		<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
+			<a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a class="btn btn-primary" data-ng-click="remove();">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
 	</div>
+
+	<hr />
+
+
 	<small>
 		<em class="text-muted">
 			Posted on

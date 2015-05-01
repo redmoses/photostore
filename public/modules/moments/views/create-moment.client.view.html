@@ -4,38 +4,53 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" enctype="multipart/form-data"
-              method="post" data-ng-model="momentsForm" novalidate>
+              method="post" novalidate>
             <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="title">Title</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <label class="control-label" for="title">Title</label>
+
+                        <div class="controls">
+                            <input type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title"
+                                   required>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="photo">Photo URL</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="photo" id="photo" class="form-control" placeholder="Photo URL" required>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <div class="controls">
+                            <input type="hidden" data-ng-model="photo" id="photo" class="form-control"
+                                   placeholder="Photo URL" required>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group" data-ng-show="photo != ''">
-                    {{message}}&nbsp;
-                    <!--<a href="{{ fileUrl }}" data-ng-show="fileUrl != ''" target="_blank">Open file</a>-->
-                    <img src="{{ photo }}" height="50px" width="50px"/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="upload">Upload Photo</label>
-                    <div class="controls">
-                        <input id="upload" name="upload" data-ng-model="upload"
-                               type="file" file-model="momentPhoto">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3" data-ng-show="photo != ''">
+                        {{message}}&nbsp;
+                        <a href="#" class="thumbnail">
+                            <img src="{{ photo }}" class="img-thumbnail">
+                        </a>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <label class="control-label" for="upload">Upload Photo</label>
+
+                        <div class="controls">
+                            <input id="upload" name="upload" data-ng-model="upload"
+                                   type="file" file-model="momentPhoto">
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
                     <input type="submit" class="btn btn-default">
+                    </div>
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>

@@ -3,10 +3,11 @@
 //Start by defining the main module and adding the module dependencies
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
-// Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-	function($locationProvider) {
+// Setting HTML5 Location Mode and Lightbox Template
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider','LightboxProvider',
+	function($locationProvider, LightboxProvider) {
 		$locationProvider.hashPrefix('!');
+		LightboxProvider.templateUrl = 'modules/moments/views/LightBoxTemplate.html';
 	}
 ]);
 
