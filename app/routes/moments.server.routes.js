@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 	// Moments Routes
 	app.route('/moments')
-		.get(moments.list)
+		.get(users.requiresLogin, moments.list)
 		.post(users.requiresLogin, moments.create);
 
 	app.route('/moments/:momentId')

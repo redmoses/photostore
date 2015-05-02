@@ -78,7 +78,9 @@ angular.module('moments').controller('MomentsController',
                 Upload.uploadFile(file).then(function(data){
                    $scope.message = data.message;
                    $scope.photo = data.url;
-                   $scope.moment.photo = $scope.photo;
+
+                    if ($scope.moment.photo)
+                       $scope.moment.photo = $scope.photo;
                 });
             };
 
