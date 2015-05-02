@@ -1,4 +1,4 @@
-Private Photo Store with MeanJS
+Photo Store with MeanJS
 ===============================
 
 This project is an attempt for learning Node.js. I chose MeanJS as the scaffolding framework. It's a very simple 
@@ -40,4 +40,4 @@ grunt
 ```
 
 ### Demo
-I have temporarily deployed a demo of the app in this location: http://photo.redmoses.me
+I have temporarily deployed a demo of the app in this (location)[http://photo.redmoses.me]
