@@ -5,6 +5,7 @@ angular.module('moments').controller('MomentsController',
     ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox',
         function ($scope, $stateParams, $location, Authentication, Moments, Upload, Lightbox) {
             $scope.authentication = Authentication;
+            $scope.uploading = false;
 
             // Create new Moment
             $scope.create = function () {
@@ -74,6 +75,7 @@ angular.module('moments').controller('MomentsController',
             $scope.photo = '';
             $scope.uploadFile = function () {
                 $scope.message = 'Uploading file...';
+                $scope.uploading = true;
                 var file = $scope.momentPhoto;
                 Upload.uploadFile(file).then(function(data){
                    $scope.message = data.message;
@@ -81,6 +83,8 @@ angular.module('moments').controller('MomentsController',
 
                     if ($scope.moment.photo)
                        $scope.moment.photo = $scope.photo;
+
+                    $scope.uploading = false;
                 });
             };
 
