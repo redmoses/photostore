@@ -12,6 +12,7 @@ angular.module('moments').directive('fileModel', [ '$parse',
 					scope.$apply(function(){
 						modelSetter(scope, element[0].files[0]);
 					});
+					scope.uploading = true;
                     scope.uploadFile();
 				});
 			}

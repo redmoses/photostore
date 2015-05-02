@@ -5,6 +5,5 @@ module.exports = function(app) {
     var users = require('../../app/controllers/users.server.controller');
 
     app.route('/upload')
-        .get(users.requiresLogin, uploader.get)
         .post(users.requiresLogin, uploader.upload);
 };

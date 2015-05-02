@@ -3,20 +3,32 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    _ = require('lodash'),
+var _ = require('lodash'),
     formidable = require('formidable'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    easyimg = require('easyimage');
 
+
+function createThumb(src, dst) {
+    easyimg.resize({
+        src: src, dst: dst,
+        width: 500, height: 500
+    }).then(
+        function (image) {
+            console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+        },
+        function (err) {
+            console.log(err);
+        });
+}
 
 /**
  * Upload file
  */
-exports.upload = function(req, res) {
+exports.upload = function (req, res) {
     var form = new formidable.IncomingForm(),
-        file_path = '',
-        file_size = '';
+        file_realname = '';
 
     var user_name = req.user.username;
     console.log('upload function called by ' + user_name);
@@ -31,47 +43,27 @@ exports.upload = function(req, res) {
     form.uploadDir = uploadDir;
 
     form.on('file', function (name, file) {
-        file_path = file.path;
-        file_size = file.size;
+        file_realname = file.name;
     });
 
     form.on('end', function () {
         console.log('-> upload done');
         var file_name = path.basename(this.openedFiles[0].path);
+        var file_ext = path.extname(file_realname);
+        file_name = file_name + file_ext;
+        var file_path = uploadDir + '/' + file_name;
+        var thumb_path = file_path + '.thumb';
+        fs.rename(this.openedFiles[0].path, file_path);
+        createThumb(file_path, thumb_path);
+        var url_base = req.protocol + '://' + req.get('host') + '/uploads/' + user_name + '/';
+
         var data = {
-            url: req.protocol + '://' + req.get('host') + '/uploads/' + user_name + '/' + file_name,
+            url: url_base + file_name,
+            thumbUrl: url_base + file_name + '.thumb',
             message: 'File uploaded'
         };
 
         res.jsonp(data);
     });
     form.parse(req);
-};
-
-/**
- * Show the current Uploader
- */
-exports.get = function(req, res) {
-    res.jsonp(req.user.username + ', you need to post here.');
-};
-
-/**
- * Update a Uploader
- */
-exports.update = function(req, res) {
-
-};
-
-/**
- * Delete an Uploader
- */
-exports.delete = function(req, res) {
-
-};
-
-/**
- * List of Uploaders
- */
-exports.list = function(req, res) {
-
 };

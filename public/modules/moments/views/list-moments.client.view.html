@@ -1,11 +1,14 @@
 <section data-ng-controller="MomentsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>Moments</h1>
+        <h1>
+            Moments
+            <a href="/#!/moments/create" class="btn btn-success pull-right">Create a moment</a>
+        </h1>
     </div>
     <div class="row">
         <div class="col-sm-6 col-md-4" data-ng-repeat="moment in moments">
             <div class="thumbnail">
-                <img src="{{ moment.photo }}" data-ng-click="openLightBox(moment.photo, moment.title)">
+                <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)">
                 <div class="caption">
                     <h3>{{ moment.title }}</h3>
                     <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">

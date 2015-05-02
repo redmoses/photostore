@@ -25,12 +25,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-6 col-md-3" data-ng-show="uploading === true">
+                    <div class="col-xs-6 col-md-3"  data-ng-show="message != ''">
                         {{message}}&nbsp;
-                        <a href="#" class="thumbnail" data-ng-show="uploading === true">
-                            <img src="modules/core/img/loaders/loader.gif" class="img-thumbnail">
-                        </a>
-                        <a href="#" class="thumbnail" data-ng-show="uploading === false">
+                        <a href="#" class="thumbnail">
                             <img src="{{ photo }}" class="img-thumbnail">
                         </a>
                     </div>
