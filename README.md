@@ -40,4 +40,4 @@ grunt
 ```
 
 ### Demo
-I have temporarily deployed a demo of the app in this (location)[http://photo.redmoses.me]
+I have temporarily deployed a demo of the app in this [location](http://photo.redmoses.me)
