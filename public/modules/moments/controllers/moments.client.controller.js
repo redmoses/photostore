@@ -76,16 +76,18 @@ angular.module('moments').controller('MomentsController',
             $scope.photoThumb = '';
             $scope.uploadFile = function () {
                 $scope.message = 'Uploading file...';
+                $scope.uploading = true;
+
                 var file = $scope.momentPhoto;
                 Upload.uploadFile(file).then(function(data){
-                   $scope.message = data.message;
-                   $scope.photo = data.url;
-                   $scope.photoThumb = data.thumbUrl;
+                    $scope.uploading = false;
+                    $scope.message = data.message;
+                    $scope.photo = data.url;
+                    $scope.photoThumb = data.thumbUrl;
 
                     if ($scope.moment.photo)
                        $scope.moment.photo = $scope.photo;
                 });
-                $scope.uploading = false;
             };
 
             // Open Image in LightBox

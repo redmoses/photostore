@@ -46,6 +46,17 @@ exports.upload = function (req, res) {
         file_realname = file.name;
     });
 
+    form.on('aborted', function () {
+        var data = {
+            message: 'File upload was aborted'
+        };
+        res.jsonp(data);
+    });
+
+    form.on('error', function (err) {
+        res.end(err);
+    });
+
     form.on('end', function () {
         console.log('-> upload done');
         var file_name = path.basename(this.openedFiles[0].path);
@@ -63,20 +74,6 @@ exports.upload = function (req, res) {
             message: 'File uploaded'
         };
 
-        res.jsonp(data);
-    });
-    
-    form.on('aborted', function () {
-       var data = {
-           message: 'File upload was aborted'
-       };
-       res.jsonp(data);
-    });
-
-    form.on('error', function (err) {
-        var data = {
-            message: err
-        };
         res.jsonp(data);
     });
     
