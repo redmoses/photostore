@@ -65,5 +65,20 @@ exports.upload = function (req, res) {
 
         res.jsonp(data);
     });
+    
+    form.on('aborted', function () {
+       var data = {
+           message: 'File upload was aborted'
+       };
+       res.jsonp(data);
+    });
+
+    form.on('error', function (err) {
+        var data = {
+            message: err
+        };
+        res.jsonp(data);
+    });
+    
     form.parse(req);
 };
