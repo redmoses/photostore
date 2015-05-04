@@ -10,7 +10,7 @@ module.exports = function(app) {
 		.post(users.requiresLogin, moments.create);
 
 	app.route('/moments/:momentId')
-		.get(moments.read)
+		.get(users.requiresLogin, moments.read)
 		.put(users.requiresLogin, moments.hasAuthorization, moments.update)
 		.delete(users.requiresLogin, moments.hasAuthorization, moments.delete);
 

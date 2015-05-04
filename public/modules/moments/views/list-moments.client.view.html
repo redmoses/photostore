@@ -5,20 +5,49 @@
             <a href="/#!/moments/create" class="btn btn-success pull-right">Share a moment</a>
         </h1>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-md-4" data-ng-repeat="moment in moments">
-            <div class="thumbnail">
-                <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)">
-                <div class="caption">
-                    <h3>{{ moment.title }}</h3>
-                    <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
-                        <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </a>
-                        <a class="btn btn-primary" data-ng-click="remove(moment);">
-                            <i class="glyphicon glyphicon-trash"></i>
-                        </a>
-                    </div>
+    <!--<div class="row">-->
+    <!--<div class="col-sm-6 col-md-4" data-ng-repeat="moment in moments">-->
+    <!--<div class="thumbnail">-->
+    <!--<img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)">-->
+    <!--<div class="caption">-->
+    <!--<h3>{{ moment.title }}</h3>-->
+    <!--<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">-->
+    <!--<a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">-->
+    <!--<i class="glyphicon glyphicon-edit"></i>-->
+    <!--</a>-->
+    <!--<a class="btn btn-primary" data-ng-click="remove(moment);">-->
+    <!--<i class="glyphicon glyphicon-trash"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<small>-->
+    <!--<em class="text-muted">-->
+    <!--Posted on-->
+    <!--<span data-ng-bind="moment.created | date:'mediumDate'"></span>-->
+    <!--by-->
+    <!--<span data-ng-bind="moment.user.displayName"></span>-->
+    <!--</em>-->
+    <!--</small>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div masonry preserve-order>
+        <div class="gutter-sizer"></div>
+        <div class="thumbnail masonry-brick col-lg-3 col-md-4 col-sm-6" data-ng-repeat="moment in moments">
+            <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)"/>
+
+            <div class="caption">
+                <h3>{{ moment.title }}</h3>
+
+                <div class="pull-right"
+                     data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
+                    <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove(moment);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
                 </div>
             </div>
             <small>
@@ -29,9 +58,10 @@
                     <span data-ng-bind="moment.user.displayName"></span>
                 </em>
             </small>
+            <br/><br/>
         </div>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!moments.$resolved || moments.length">
-    	No Moments yet, why don't you <a href="/#!/moments/create">create one</a>?
+        No Moments yet, why don't you <a href="/#!/moments/create">create one</a>?
     </div>
 </section>
