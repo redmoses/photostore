@@ -61,15 +61,16 @@
 <script type="text/javascript">
     var user = {{ user | json | safe }};
 </script>
-<!--<section>-->
-    <!--<div class="col-lg-12">-->
-        <!--<ul class="list-unstyled">-->
-            <!--<li class="pull-right"><a href="#top">Back to top</a></li>-->
-        <!--</ul>-->
-        <!--<p>An app by <a href="http://redmoses.me" rel="nofollow">RedMoses</a>. Contact me at <a-->
-                <!--href="mailto:musa@redmoses.me">musa@redmoses.me</a>.</p>-->
-    <!--</div>-->
-<!--</section>-->
+<footer>
+    <hr />
+    <div class="col-lg-12">
+        <ul class="list-unstyled">
+            <li class="pull-right"><a href="#top">Back to top</a></li>
+        </ul>
+        <p>An app by <a href="http://redmoses.me" rel="nofollow">RedMoses</a>. Contact me at <a
+                href="mailto:musa@redmoses.me">musa@redmoses.me</a>.</p>
+    </div>
+</footer>
 <!--Application JavaScript Files-->
 {% for jsFile in jsFiles %}
 <script type="text/javascript" src="{{jsFile}}"></script>
