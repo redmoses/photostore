@@ -35,9 +35,8 @@
     <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
     <!--Application CSS Files-->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
     {% for cssFile in cssFiles %}
     <link rel="stylesheet" href="{{cssFile}}">
     {% endfor %}
@@ -50,26 +49,22 @@
 
 <body class="ng-cloak">
 <header data-ng-include="'/modules/core/views/header.client.view.html'"
-        class="navbar navbar-fixed-top navbar-inverse"></header>
+        class="navbar navbar-default navbar-fixed-top"></header>
 <section class="content">
     <section class="container">
         {% block content %}{% endblock %}
     </section>
 </section>
-
+<hr />
 <!--Embedding The User Object-->
 <script type="text/javascript">
     var user = {{ user | json | safe }};
 </script>
 <footer>
-    <hr />
-    <div class="col-lg-12">
-        <ul class="list-unstyled">
-            <li class="pull-right"><a href="#top">Back to top</a></li>
-        </ul>
-        <p>An app by <a href="http://redmoses.me" rel="nofollow">RedMoses</a>. Contact me at <a
-                href="mailto:musa@redmoses.me">musa@redmoses.me</a>.</p>
-    </div>
+    <p class="text-center">
+        An app by <a href="http://redmoses.me" rel="nofollow">RedMoses</a>. Find me at <a
+            href="mailto:musa@redmoses.me">musa@redmoses.me</a>.
+    </p>
 </footer>
 <!--Application JavaScript Files-->
 {% for jsFile in jsFiles %}
