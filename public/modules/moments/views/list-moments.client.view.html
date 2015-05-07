@@ -1,13 +1,30 @@
 <section data-ng-controller="MomentsController" data-ng-init="find()">
     <div class="page-header">
-        <h1>
-            Moments
-            <a href="/#!/moments/create" class="btn btn-success pull-right">Share a moment</a>
-        </h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form class="inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="searchBox" placeholder="Search moments">
+                        <span class="input-group-btn">
+                            <button class="btn btn-md btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4 pull-right">
+                <a href="/#!/moments/create" class="btn btn-success pull-right">
+                    <span class="glyphicon glyphicon-share"></span>
+                    &nbsp;Share a moment
+                </a>
+            </div>
+        </div>
     </div>
     <div masonry preserve-order>
         <div class="gutter-sizer"></div>
-        <div class="thumbnail masonry-brick col-lg-3 col-md-4 col-sm-6" data-ng-repeat="moment in moments">
+        <div class="thumbnail masonry-brick col-lg-3 col-md-4 col-sm-6"
+             data-ng-repeat="moment in moments | filter: {title: searchBox}">
             <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)"/>
 
             <div class="caption">

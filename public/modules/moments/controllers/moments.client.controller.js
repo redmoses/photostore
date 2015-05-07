@@ -60,6 +60,7 @@ angular.module('moments').controller('MomentsController',
 
             // Find a list of Moments
             $scope.find = function () {
+                $scope.showSearch = true;
                 $scope.moments = Moments.query();
             };
 
