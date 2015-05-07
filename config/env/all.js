@@ -14,7 +14,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css',
-				'public/modules/core/css/bootstrap.min.css'
+				'public/modules/core/css/bootstrap.css'
 			],
 			js: [
                 'public/lib/jquery/dist/jquery.min.js',
