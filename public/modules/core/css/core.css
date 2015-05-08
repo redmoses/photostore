@@ -16,3 +16,11 @@
 .gutter-sizer {
 	width: 10%;
 }
+/*Responsive Styles*/
+
+@media (max-width: 768px) {
+	.btn-responsive{
+		display:block;
+		text-aligh:center;
+	}
+}
