@@ -21,6 +21,7 @@
 @media (max-width: 768px) {
 	.btn-responsive{
 		display:block;
-		text-aligh:center;
+		margin-top:10px;
+		float:none !important;
 	}
 }
