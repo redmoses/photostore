@@ -21,11 +21,11 @@
             </div>
         </div>
     </div>
-    <div masonry preserve-order>
+    <div class="col-centered" masonry preserve-order>
         <div class="gutter-sizer"></div>
-        <div class="thumbnail masonry-brick col-lg-3 col-md-4 col-sm-6"
+        <div class="thumbnail masonry-brick"
              data-ng-repeat="moment in moments | filter: {title: searchBox}">
-            <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)"/>
+            <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="250px" />
 
             <div class="caption">
                 <h4>{{ moment.title }}</h4>

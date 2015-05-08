@@ -1,0 +1,8 @@
+.thumbnail {
+    margin-left: 10px;
+    border-spacing: 5px;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
