@@ -2,11 +2,9 @@
     margin-left: 10px;
     border-spacing: 5px;
     width: 220px;
-    height: 300px;
 }
 @media (max-width: 768px) {
     .thumbnail{
         width: auto;
-        hight: auto;
     }
 }
