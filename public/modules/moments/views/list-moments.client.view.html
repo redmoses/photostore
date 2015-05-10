@@ -23,22 +23,21 @@
     </div>
     <div class="col-centered" masonry preserve-order>
         <div class="gutter-sizer"></div>
-        <div class="thumbnail masonry-brick"
+        <div class="thumbnail masonry-brick col-lg-2 col-md-4 col-sm-6"
              data-ng-repeat="moment in moments | filter: {title: searchBox}">
             <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="250px" />
 
-            <div class="caption col-lg-3 col-md-4 col-sm-6">
+            <div class="caption">
                 <p>{{ moment.title }}</p>
-
-                <div class="pull-right"
-                     data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
-                    <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </a>
-                    <a class="btn btn-primary" data-ng-click="remove(moment);">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
-                </div>
+            </div>
+            <div class="pull-right"
+                 data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
+                <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-primary" data-ng-click="remove(moment);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
             </div>
             <small>
                 <em class="text-muted">

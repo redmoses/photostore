@@ -1,8 +1,10 @@
 .thumbnail {
     margin-left: 10px;
     border-spacing: 5px;
+    width: 220px;
 }
-.col-centered{
-    float: none;
-    margin: 0 auto;
+@media (max-width: 768px) {
+    .thumbnail{
+        width: auto;
+    }
 }
