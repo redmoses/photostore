@@ -11,6 +11,10 @@
     width: auto;
 }
 
+.jumbotron {
+    background-color: transparent;
+}
+
 @media (max-width: 768px) {
     .thumbnail{
         width: auto;
