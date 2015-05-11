@@ -15,15 +15,19 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <a href="/#!/moments" class="btn btn-success btn-responsive">
-                    <span class="glyphicon glyphicon-share"></span>
+                    <span class="glyphicon glyphicon-picture"></span>
                     &nbsp;Shared moments
                 </a>
-                <a href="/#!/signin" class="btn btn-default btn-responsive">
+                <a href="/#!/signin" class="btn btn-default btn-responsive" data-ng-show="!authentication.user">
                     <span class="glyphicon glyphicon-log-in"></span>
                     &nbsp;Sign in
                 </a>
+                <a href="/#!/mymoments" class="btn btn-primary btn-responsive" data-ng-show="authentication.user">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    &nbsp;My moments
+                </a>
                 <a href="https://github.com/redmoses/photostore" target="_blank" class="btn btn-default btn-responsive">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-sunglasses"></span>
                     &nbsp;View on Github
                 </a>
             </div>
