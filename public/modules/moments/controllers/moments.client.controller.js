@@ -2,8 +2,8 @@
 
 // Moments controller
 angular.module('moments').controller('MomentsController',
-    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox', '$modal',
-        function ($scope, $stateParams, $location, Authentication, Moments, Upload, Lightbox, $modal) {
+    ['$scope','$state', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox', '$modal',
+        function ($scope, $state, $stateParams, $location, Authentication, Moments, Upload, Lightbox, $modal) {
             $scope.authentication = Authentication;
             $scope.uploading = false;
 
@@ -17,15 +17,15 @@ angular.module('moments').controller('MomentsController',
 
                 // Redirect after save
                 moment.$save(function (response) {
-                    //$location.path('moments/' + response._id);
                     $location.path('moments');
-
                     // Clear form fields
                     $scope.title = '';
                     $scope.photo = '';
                     $scope.message = '';
+                    // close the modal
                     modal.$close();
-                    $route.reload();
+                    // reload view
+                    $state.reload();
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
