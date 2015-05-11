@@ -2,13 +2,13 @@
 
 // Moments controller
 angular.module('moments').controller('MomentsController',
-    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox',
-        function ($scope, $stateParams, $location, Authentication, Moments, Upload, Lightbox) {
+    ['$scope', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox', '$modal',
+        function ($scope, $stateParams, $location, Authentication, Moments, Upload, Lightbox, $modal) {
             $scope.authentication = Authentication;
             $scope.uploading = false;
 
             // Create new Moment
-            $scope.create = function () {
+            $scope.create = function (modal) {
                 // Create new Moment object
                 var moment = new Moments({
                     title: this.title,
@@ -24,6 +24,8 @@ angular.module('moments').controller('MomentsController',
                     $scope.title = '';
                     $scope.photo = '';
                     $scope.message = '';
+                    modal.$close();
+                    $route.reload();
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
@@ -99,5 +101,13 @@ angular.module('moments').controller('MomentsController',
                 }];
                 Lightbox.openModal(photos, 0);
             };
+
+            // Moment Uploader Modal
+            $scope.openUploader = function () {
+                $modal.open({
+                    templateUrl: 'modules/moments/views/create-moment.client.view.html'
+                });
+            };
+
         }
     ]);
