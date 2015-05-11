@@ -65,16 +65,26 @@ exports.upload = function (req, res) {
         var file_path = uploadDir + '/' + file_name;
         var thumb_path = file_path + '.thumb';
         fs.rename(this.openedFiles[0].path, file_path);
-        createThumb(file_path, thumb_path);
-        var url_base = req.protocol + '://' + req.get('host') + '/uploads/' + user_name + '/';
 
-        var data = {
-            url: url_base + file_name,
-            thumbUrl: url_base + file_name + '.thumb',
-            message: 'File uploaded'
-        };
+        easyimg.resize({
+            src: file_path, dst: thumb_path,
+            width: 500, height: 500
+        }).then(
+            function (image) {
+                console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
+                var url_base = req.protocol + '://' + req.get('host') + '/uploads/' + user_name + '/';
 
-        res.jsonp(data);
+                var data = {
+                    url: url_base + file_name,
+                    thumbUrl: url_base + file_name + '.thumb',
+                    message: 'File uploaded'
+                };
+
+                res.jsonp(data);
+            },
+            function (err) {
+                console.log(err);
+            });
     });
     
     form.parse(req);

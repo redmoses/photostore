@@ -3,32 +3,37 @@
         <button type="button" class="close" data-ng-click="$close()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <h3 class="modal-title">Share a moment</h3>
+        <h3 class="modal-title">Share a moment!</h3>
+        <hr/>
     </div>
     <form class="form-horizontal" data-ng-submit="create(this)" enctype="multipart/form-data"
           method="post" novalidate>
         <div class="modal-body">
-            <label class="control-label" for="title">A short description</label>
+            <input type="hidden" data-ng-model="photo" id="photo" class="form-control"
+                   placeholder="Photo URL" required>
 
-            <div class="controls">
+            <div class="col-md-12">
+                <div data-ng-show="message != ''">
+                    <div class="alert alert-success" role="alert" data-ng-bind="message"></div>
+                    <img src="{{ photo }}" class="img-responsive">
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="input-group">
                 <input type="text" data-ng-model="title" id="title" class="form-control"
                        placeholder="Description"
                        required>
-                <input type="hidden" data-ng-model="photo" id="photo" class="form-control"
-                       placeholder="Photo URL" required>
+
+                <span class="btn btn-default btn-file input-group-addon">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <input id="upload" name="upload" data-ng-model="upload"
+                           type="file" class="form-control" file-model="momentPhoto"
+                           ng-disabled="uploading">
+                </span>
             </div>
-            <div class="" data-ng-show="message != ''">
-                {{message}}&nbsp;
-                <a href="#" class="thumbnail">
-                    <img src="{{ photo }}" class="img-thumbnail">
-                </a>
-            </div>
+
             <br/>
-            <div class="controls">
-                <input id="upload" name="upload" data-ng-model="upload"
-                       type="file" class="form-control" file-model="momentPhoto"
-                       ng-disabled="uploading">
-            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="submit">
