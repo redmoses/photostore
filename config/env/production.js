@@ -5,9 +5,9 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css',
-				'public/modules/core/css/bootstrap.css'
+				'public/modules/core/css/bootstrap.css',
+				'public/modules/moments/css/moments.css'
 			],
 			js: [
 				'public/lib/jquery/dist/jquery.min.js',
