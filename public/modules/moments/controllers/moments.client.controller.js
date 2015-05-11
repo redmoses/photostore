@@ -75,7 +75,7 @@ angular.module('moments').controller('MomentsController',
 
             // Find user specific Moments
             $scope.findUserMoments = function () {
-                $scope.moments = Moments.get({
+                $scope.moments = Moments.query({
                     user: $scope.authentication.user
                 });
             };
