@@ -14,8 +14,8 @@ module.exports = function(app) {
 		.put(users.requiresLogin, moments.hasAuthorization, moments.update)
 		.delete(users.requiresLogin, moments.hasAuthorization, moments.delete);
 
-	app.router('/mymoments')
-		.get(user.requiresLogin, moments.momentByUser)
+	app.route('/mymoments')
+		.get(users.requiresLogin, moments.momentByUser);
 
 	// Finish by binding the Moment middleware
 	app.param('momentId', moments.momentByID);

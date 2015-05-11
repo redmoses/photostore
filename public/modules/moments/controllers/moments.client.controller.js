@@ -2,8 +2,8 @@
 
 // Moments controller
 angular.module('moments').controller('MomentsController',
-    ['$scope','$state', '$stateParams', '$location', 'Authentication', 'Moments', 'Upload', 'Lightbox', '$modal',
-        function ($scope, $state, $stateParams, $location, Authentication, Moments, Upload, Lightbox, $modal) {
+    ['$scope','$state', '$stateParams', '$location', 'Authentication', 'Moments', 'Mymoments', 'Upload', 'Lightbox', '$modal',
+        function ($scope, $state, $stateParams, $location, Authentication, Moments, Mymoments, Upload, Lightbox, $modal) {
             $scope.authentication = Authentication;
             $scope.uploading = false;
 
@@ -62,7 +62,6 @@ angular.module('moments').controller('MomentsController',
 
             // Find a list of Moments
             $scope.find = function () {
-                $scope.showSearch = true;
                 $scope.moments = Moments.query();
             };
 
@@ -75,10 +74,7 @@ angular.module('moments').controller('MomentsController',
 
             // Find user specific Moments
             $scope.findUserMoments = function () {
-                $scope.moments = '';
-                $scope.moments = Moments.get({
-                    user: $scope.authentication.user
-                });
+                $scope.moments = Mymoments.query();
             };
 
             // Upload image

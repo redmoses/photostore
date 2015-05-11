@@ -88,7 +88,7 @@ exports.list = function(req, res) {
  * Moment by user
  */
 exports.momentByUser = function(req, res) {
-	Moment.findByUser(req.user).sort('-created').populate('user', 'displayName').exec(function(err, moments) {
+	Moment.find({user: req.user}).sort('-created').populate('user', 'displayName').exec(function(err, moments) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
