@@ -68,7 +68,7 @@ exports.upload = function (req, res) {
 
         easyimg.resize({
             src: file_path, dst: thumb_path,
-            width: 300, height: 300
+            width: 500, height: 500
         }).then(
             function (image) {
                 console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
