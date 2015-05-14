@@ -2,8 +2,8 @@
 
 // Moments controller
 angular.module('moments').controller('MomentsController',
-    ['$scope','$state', '$stateParams', '$location', 'Authentication', 'Moments', 'Mymoments', 'Upload', 'Lightbox', '$modal',
-        function ($scope, $state, $stateParams, $location, Authentication, Moments, Mymoments, Upload, Lightbox, $modal) {
+    ['$scope', '$state', '$stateParams', '$location', 'Authentication', 'Moments', 'Mymoments', 'Upload', 'Lightbox', '$modal', '$filter',
+        function ($scope, $state, $stateParams, $location, Authentication, Moments, Mymoments, Upload, Lightbox, $modal, $filter) {
             $scope.authentication = Authentication;
             $scope.uploading = false;
 
@@ -86,24 +86,46 @@ angular.module('moments').controller('MomentsController',
                 $scope.uploading = true;
 
                 var file = $scope.momentPhoto;
-                Upload.uploadFile(file).then(function(data){
+                Upload.uploadFile(file).then(function (data) {
                     $scope.uploading = false;
                     $scope.message = data.message;
                     $scope.photo = data.url;
                     $scope.photoThumb = data.thumbUrl;
 
                     if ($scope.moment.photo)
-                       $scope.moment.photo = $scope.photo;
+                        $scope.moment.photo = $scope.photo;
                 });
             };
 
             // Open Image in LightBox
-            $scope.openLightBox = function (photo, title) {
-                var photos = [{
-                    'url': photo,
-                    'caption': title
-                }];
-                Lightbox.openModal(photos, 0);
+            //$scope.openLightBox = function (photo, title) {
+            //    var photos = [{
+            //        'url': photo,
+            //        'caption': title
+            //    }];
+            //    Lightbox.openModal(photos, 0);
+            //};
+
+            $scope.openLightBox = function (url) {
+                var photos = [];
+                var orderBy = $filter('orderBy');
+                for (var i in $scope.moments) {
+                    photos.push({
+                        'url': $scope.moments[i].photo,
+                        'caption': $scope.moments[i].title,
+                        'created': $scope.moments[i].created
+                    });
+                }
+
+                photos = orderBy(photos, '-created', false);
+
+                for (var j in photos) {
+                    if (photos [j].url === url) {
+                        Lightbox.openModal(photos, j);
+                        break;
+                    }
+                }
+
             };
 
             // Moment Uploader Modal
