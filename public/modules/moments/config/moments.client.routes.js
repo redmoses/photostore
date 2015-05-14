@@ -6,7 +6,7 @@ angular.module('moments').config(['$stateProvider',
 		// Moments state routing
 		$stateProvider.
 		state('mymoments', {
-			url: '/mymoments',
+			url: '/moments/mine',
 			templateUrl: 'modules/moments/views/mymoments.client.view.html'
 		}).
 		state('listMoments', {

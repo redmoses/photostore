@@ -2,6 +2,6 @@
 
 angular.module('moments').factory('Mymoments', [ '$resource',
 	function($resource) {
-		return $resource('mymoments');
+		return $resource('moments/mine');
 	}
 ]);

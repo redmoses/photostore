@@ -9,13 +9,13 @@ module.exports = function(app) {
 		.get(users.requiresLogin, moments.list)
 		.post(users.requiresLogin, moments.create);
 
+    app.route('/moments/mine')
+        .get(users.requiresLogin, moments.momentByUser);
+
 	app.route('/moments/:momentId')
 		.get(users.requiresLogin, moments.read)
 		.put(users.requiresLogin, moments.hasAuthorization, moments.update)
 		.delete(users.requiresLogin, moments.hasAuthorization, moments.delete);
-
-	app.route('/mymoments')
-		.get(users.requiresLogin, moments.momentByUser);
 
 	// Finish by binding the Moment middleware
 	app.param('momentId', moments.momentByID);
