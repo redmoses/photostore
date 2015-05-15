@@ -79,6 +79,10 @@ exports.list = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            for(var i in moments){
+                moments[i] = moments[i].toObject();
+                moments[i].author = moments[i].user.displayName;
+            }
             res.jsonp(moments);
         }
     });
