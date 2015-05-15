@@ -1,13 +1,17 @@
-<div class="modal-body"
-     ng-swipe-left="Lightbox.nextImage()"
-     ng-swipe-right="Lightbox.prevImage()">
+<div class="modal-body">
     <!-- navigation -->
     <div class="lightbox-nav">
         <!-- close button -->
         <button class="close" aria-hidden="true" ng-click="$dismiss()">×</button>
+
+        <div class="btn-group">
+            <a ng-href="{{Lightbox.imageUrl}}" target="_blank"
+               class="btn btn-xs btn-default" title="Open in new tab">
+                Open image in new tab
+            </a>
+        </div>
     </div>
 
-    <br/>
     <div class="lightbox-image-container">
         <!-- caption -->
         <div class="lightbox-image-caption">

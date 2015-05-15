@@ -98,42 +98,42 @@ angular.module('moments').controller('MomentsController',
             };
 
             // Open Image in LightBox
-            //$scope.openLightBox = function (photo, title) {
-            //    var photos = [{
-            //        'url': photo,
-            //        'caption': title
-            //    }];
-            //    Lightbox.openModal(photos, 0);
+            $scope.openLightBox = function (photo, title) {
+                var photos = [{
+                    'url': photo,
+                    'caption': title
+                }];
+                Lightbox.openModal(photos, 0);
+            };
+
+            //$scope.openLightBox = function (url) {
+            //    var photos = [];
+            //    var orderBy = $filter('orderBy');
+            //    for (var i in $scope.moments) {
+            //        photos.push({
+            //            'url': $scope.moments[i].photo,
+            //            'caption': $scope.moments[i].title,
+            //            'created': $scope.moments[i].created
+            //        });
+            //    }
+            //
+            //    photos = orderBy(photos, '-created', false);
+            //
+            //    for (var j in photos) {
+            //        if (photos [j].url === url) {
+            //            Lightbox.openModal(photos, j);
+            //            break;
+            //        }
+            //    }
+            //
             //};
-
-            $scope.openLightBox = function (url) {
-                var photos = [];
-                var orderBy = $filter('orderBy');
-                for (var i in $scope.moments) {
-                    photos.push({
-                        'url': $scope.moments[i].photo,
-                        'caption': $scope.moments[i].title,
-                        'created': $scope.moments[i].created
-                    });
-                }
-
-                photos = orderBy(photos, '-created', false);
-
-                for (var j in photos) {
-                    if (photos [j].url === url) {
-                        Lightbox.openModal(photos, j);
-                        break;
-                    }
-                }
-
-            };
-
-            // Moment Uploader Modal
-            $scope.openUploader = function () {
-                $modal.open({
-                    templateUrl: 'modules/moments/views/create-moment.client.view.html'
-                });
-            };
+            //
+            //// Moment Uploader Modal
+            //$scope.openUploader = function () {
+            //    $modal.open({
+            //        templateUrl: 'modules/moments/views/create-moment.client.view.html'
+            //    });
+            //};
 
         }
     ]);

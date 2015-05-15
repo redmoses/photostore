@@ -7,7 +7,8 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider','LightboxProvider',
 	function($locationProvider, LightboxProvider) {
 		$locationProvider.hashPrefix('!');
-		//LightboxProvider.templateUrl = 'modules/moments/views/LightBoxTemplate.html';
+		// lightbox template url
+		LightboxProvider.templateUrl = 'modules/moments/views/LightBoxTemplate.html';
 	}
 ]);
 
