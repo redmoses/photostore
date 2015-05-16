@@ -8,6 +8,19 @@ var mongoose = require('mongoose'),
     Moment = mongoose.model('Moment'),
     _ = require('lodash');
 
+
+/**
+ * Custom function to turn mongoose objects to js object and add author name
+ */
+
+function processMoments(moments){
+    for(var i in moments){
+        moments[i] = moments[i].toObject();
+        moments[i].author = moments[i].user.displayName;
+    }
+    return moments;
+}
+
 /**
  * Create a Moment
  */
@@ -79,10 +92,7 @@ exports.list = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            for(var i in moments){
-                moments[i] = moments[i].toObject();
-                moments[i].author = moments[i].user.displayName;
-            }
+            moments = processMoments(moments);
             res.jsonp(moments);
         }
     });
@@ -90,7 +100,7 @@ exports.list = function (req, res) {
 };
 
 /**
- * Moment by user
+ * Moments by user
  */
 exports.momentByUser = function (req, res) {
     Moment.find({user: req.user}).sort('-created').populate('user', 'displayName').exec(function (err, moments) {
@@ -99,9 +109,17 @@ exports.momentByUser = function (req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            moments = processMoments(moments);
             res.jsonp(moments);
         }
     });
+};
+
+/**
+ * Return the user moments
+ */
+exports.getUserMoments = function (req, res) {
+  res.jsonp(req.moments);
 };
 
 /**
@@ -125,3 +143,5 @@ exports.hasAuthorization = function (req, res, next) {
     }
     next();
 };
+
+

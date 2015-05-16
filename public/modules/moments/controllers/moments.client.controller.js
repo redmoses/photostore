@@ -65,16 +65,17 @@ angular.module('moments').controller('MomentsController',
                 $scope.moments = Moments.query();
             };
 
+            // Find user specific Moments
+            $scope.findUserMoments = function () {
+                //$scope.moments = Moments.getUserMoments({userId: $scope.authentication.user._id});
+                $scope.moments = Mymoments.query();
+            };
+
             // Find existing Moment
             $scope.findOne = function () {
                 $scope.moment = Moments.get({
                     momentId: $stateParams.momentId
                 });
-            };
-
-            // Find user specific Moments
-            $scope.findUserMoments = function () {
-                $scope.moments = Mymoments.query();
             };
 
             // Upload image

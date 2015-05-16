@@ -1,4 +1,4 @@
-<section data-ng-controller="MomentsController" data-ng-init="find()">
+<section data-ng-controller="MomentsController" data-ng-init="findUserMoments()">
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-4">
@@ -24,11 +24,11 @@
 	<div class="col-centered" masonry preserve-order>
 		<div class="gutter-sizer"></div>
 		<div class="thumbnail masonry-brick col-lg-2 col-md-4 col-sm-12"
-			 data-ng-repeat="moment in moments | filter: {author: authentication.user.displayName}">
-			<img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="100%" height="100%" />
+			 data-ng-repeat="moment in moments | filter: {title: searchBox}">
+			<img src="{{moment.photo}}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="100%" height="100%" />
 
 			<div class="caption">
-				<p>{{ moment.title }}</p>
+				<p>{{moment.title}}</p>
 			</div>
 			<div class="pull-right"
 				 data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
