@@ -9,10 +9,18 @@ angular.module('moments').controller('MomentsController',
             $scope.filteredMoments = [];
 
             $scope.loadMoments = function () {
-                var momentLimit = 5;
-                var last = $scope.filteredMoments.length - 1;
-                for (var i = 1; i <= momentLimit; i++) {
-                    $scope.filteredMoments.push($scope.moments[last + i]);
+                if ($scope.filteredMoments.length < $scope.moments.length) {
+                    var last = $scope.filteredMoments.length - 1;
+
+                    var momentLimit = 5;
+                    if ($scope.moments.length - $scope.filteredMoments.length < momentLimit)
+                        momentLimit = $scope.moments.length - $scope.filteredMoments.length;
+
+                    for (var i = 1; i <= momentLimit; i++) {
+                        $scope.filteredMoments.push($scope.moments[last + i]);
+                    }
+                } else {
+                    $scope.filteredMoments = $scope.moments;
                 }
             };
 
