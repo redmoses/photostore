@@ -12,7 +12,7 @@ angular.module('moments').controller('MomentsController',
                 if ($scope.filteredMoments.length < $scope.moments.length) {
                     var last = $scope.filteredMoments.length - 1;
 
-                    var momentLimit = 5;
+                    var momentLimit = 10;
                     if ($scope.moments.length - $scope.filteredMoments.length < momentLimit)
                         momentLimit = $scope.moments.length - $scope.filteredMoments.length;
 
