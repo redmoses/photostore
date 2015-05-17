@@ -6,6 +6,15 @@ angular.module('moments').controller('MomentsController',
         function ($scope, $state, $stateParams, $location, Authentication, Moments, Mymoments, Upload, Lightbox, $modal, $filter) {
             $scope.authentication = Authentication;
             $scope.uploading = false;
+            $scope.filteredMoments = [];
+
+            $scope.loadMoments = function () {
+                var momentLimit = 5;
+                var last = $scope.filteredMoments.length - 1;
+                for (var i = 1; i <= momentLimit; i++) {
+                    $scope.filteredMoments.push($scope.moments[last + i]);
+                }
+            };
 
             // Create new Moment
             $scope.create = function (modal) {
@@ -62,13 +71,18 @@ angular.module('moments').controller('MomentsController',
 
             // Find a list of Moments
             $scope.find = function () {
-                $scope.moments = Moments.query();
+                Moments.query(function (data) {
+                    $scope.moments = data;
+                    $scope.loadMoments();
+                });
             };
 
             // Find user specific Moments
             $scope.findUserMoments = function () {
-                //$scope.moments = Moments.getUserMoments({userId: $scope.authentication.user._id});
-                $scope.moments = Mymoments.query();
+                Mymoments.query(function (data) {
+                    $scope.moments = data;
+                    $scope.loadMoments();
+                });
             };
 
             // Find existing Moment
@@ -107,34 +121,12 @@ angular.module('moments').controller('MomentsController',
                 Lightbox.openModal(photos, 0);
             };
 
-            //$scope.openLightBox = function (url) {
-            //    var photos = [];
-            //    var orderBy = $filter('orderBy');
-            //    for (var i in $scope.moments) {
-            //        photos.push({
-            //            'url': $scope.moments[i].photo,
-            //            'caption': $scope.moments[i].title,
-            //            'created': $scope.moments[i].created
-            //        });
-            //    }
-            //
-            //    photos = orderBy(photos, '-created', false);
-            //
-            //    for (var j in photos) {
-            //        if (photos [j].url === url) {
-            //            Lightbox.openModal(photos, j);
-            //            break;
-            //        }
-            //    }
-            //
-            //};
-            //
-            //// Moment Uploader Modal
-            //$scope.openUploader = function () {
-            //    $modal.open({
-            //        templateUrl: 'modules/moments/views/create-moment.client.view.html'
-            //    });
-            //};
+            // Moment Uploader Modal
+            $scope.openUploader = function () {
+                $modal.open({
+                    templateUrl: 'modules/moments/views/create-moment.client.view.html'
+                });
+            };
 
         }
     ]);

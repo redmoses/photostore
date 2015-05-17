@@ -21,35 +21,38 @@
             </div>
         </div>
     </div>
-    <div class="col-centered" masonry preserve-order>
-        <div class="gutter-sizer"></div>
-        <div class="thumbnail masonry-brick col-lg-2 col-md-4 col-sm-12"
-             data-ng-repeat="moment in moments | filter: {title: searchBox}">
-            <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="100%" height="100%" />
+    <div infinite-scroll="loadMoments()" infinite-scroll-distance="3">
+        <div class="col-centered" masonry preserve-order>
+            <div class="gutter-sizer"></div>
+            <div class="thumbnail masonry-brick col-lg-2 col-md-4 col-sm-12"
+                 data-ng-repeat="moment in filteredMoments | filter: {title: searchBox}">
+                <img src="{{ moment.photo }}.thumb" data-ng-click="openLightBox(moment.photo, moment.title)" width="100%" height="100%" />
 
-            <div class="caption">
-                <p>{{ moment.title }}</p>
+                <div class="caption">
+                    <p>{{ moment.title }}</p>
+                </div>
+                <div class="pull-right"
+                     data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
+                    <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove(moment);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </div>
+                <small>
+                    <em class="text-muted">
+                        Posted on
+                        <span data-ng-bind="moment.created | date:'mediumDate'"></span>
+                        by
+                        <span data-ng-bind="moment.user.displayName"></span>
+                    </em>
+                </small>
+                <br/><br/>
             </div>
-            <div class="pull-right"
-                 data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
-                <a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </a>
-                <a class="btn btn-primary" data-ng-click="remove(moment);">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
-            </div>
-            <small>
-                <em class="text-muted">
-                    Posted on
-                    <span data-ng-bind="moment.created | date:'mediumDate'"></span>
-                    by
-                    <span data-ng-bind="moment.user.displayName"></span>
-                </em>
-            </small>
-            <br/><br/>
         </div>
     </div>
+
     <div class="alert alert-warning text-center" data-ng-hide="!moments.$resolved || moments.length">
         No Moments yet, why don't you <a href="/#!/moments/create">create one</a>?
     </div>

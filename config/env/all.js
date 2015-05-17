@@ -41,7 +41,8 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/angular-masonry/angular-masonry.js',
-				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js'
+				'public/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js',
+                'public/lib/ngInfiniteScroll/build/ng-infinite-scroll.js'
 			]
 		},
 		css: [
