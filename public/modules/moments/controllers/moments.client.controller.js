@@ -7,20 +7,23 @@ angular.module('moments').controller('MomentsController',
             $scope.authentication = Authentication;
             $scope.uploading = false;
             $scope.filteredMoments = [];
+            $scope.momentId = '';
 
             $scope.loadMoments = function () {
-                if ($scope.filteredMoments.length < $scope.moments.length) {
-                    var last = $scope.filteredMoments.length - 1;
+                if ($scope.moments) {
+                    if ($scope.filteredMoments.length < $scope.moments.length) {
+                        var last = $scope.filteredMoments.length - 1;
 
-                    var momentLimit = 10;
-                    if ($scope.moments.length - $scope.filteredMoments.length < momentLimit)
-                        momentLimit = $scope.moments.length - $scope.filteredMoments.length;
+                        var momentLimit = 10;
+                        if ($scope.moments.length - $scope.filteredMoments.length < momentLimit)
+                            momentLimit = $scope.moments.length - $scope.filteredMoments.length;
 
-                    for (var i = 1; i <= momentLimit; i++) {
-                        $scope.filteredMoments.push($scope.moments[last + i]);
+                        for (var i = 1; i <= momentLimit; i++) {
+                            $scope.filteredMoments.push($scope.moments[last + i]);
+                        }
+                    } else {
+                        $scope.filteredMoments = $scope.moments;
                     }
-                } else {
-                    $scope.filteredMoments = $scope.moments;
                 }
             };
 
@@ -96,7 +99,8 @@ angular.module('moments').controller('MomentsController',
             // Find existing Moment
             $scope.findOne = function () {
                 $scope.moment = Moments.get({
-                    momentId: $stateParams.momentId
+                    //momentId: $stateParams.momentId
+                    momentId: $scope.momentId
                 });
             };
 
@@ -133,6 +137,15 @@ angular.module('moments').controller('MomentsController',
             $scope.openUploader = function () {
                 $modal.open({
                     templateUrl: 'modules/moments/views/create-moment.client.view.html'
+                });
+            };
+
+            $scope.openEditor = function (momentId) {
+                $scope.moment = Moments.get({
+                    momentId: momentId
+                });
+                $modal.open({
+                    templateUrl: 'modules/moments/views/edit-moment.client.view.html'
                 });
             };
 
