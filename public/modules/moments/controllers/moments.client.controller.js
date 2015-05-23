@@ -61,6 +61,7 @@ angular.module('moments').controller('MomentsController',
                             $scope.moments.splice(i, 1);
                         }
                     }
+                    $state.reload();
                 } else {
                     $scope.moment.$remove(function () {
                         $location.path('moments');
@@ -141,7 +142,8 @@ angular.module('moments').controller('MomentsController',
             // Moment Uploader Modal
             $scope.openUploader = function () {
                 $modal.open({
-                    templateUrl: 'modules/moments/views/create-moment.client.view.html'
+                    templateUrl: 'modules/moments/views/create-moment.client.view.html',
+                    scope: $scope
                 });
             };
         }
