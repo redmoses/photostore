@@ -96,15 +96,7 @@ angular.module('moments').controller('MomentsController',
                 });
             };
 
-            // Find existing Moment
-            $scope.findOne = function () {
-                alert($scope.momentId);
-                $scope.moment = Moments.get({
-                    momentId: $scope.momentId
-                });
-            };
-
-            // open editor modal
+            // Edit moment
             $scope.openEditor = function (id) {
                 Moments.get({momentId: id}, function (data) {
                     $scope.moment = data;
@@ -121,6 +113,8 @@ angular.module('moments').controller('MomentsController',
             $scope.photoThumb = '';
             $scope.uploadFile = function () {
                 $scope.message = 'Uploading file...';
+                $scope.photo = 'http://placehold.it/300&text=Uploading%20image';
+                $scope.browseButton = 'Uploading Image';
                 $scope.uploading = true;
 
                 var file = $scope.momentPhoto;
@@ -128,7 +122,7 @@ angular.module('moments').controller('MomentsController',
                     $scope.uploading = false;
                     $scope.message = data.message;
                     $scope.photo = data.url;
-                    $scope.photoThumb = data.thumbUrl;
+                    $scope.browseButton = 'Change Image';
 
                     if ($scope.moment.photo)
                         $scope.moment.photo = $scope.photo;

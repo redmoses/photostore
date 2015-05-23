@@ -12,6 +12,10 @@
     width: auto;
 }
 
+.img-thumbnail{
+    height: 240px;
+}
+
 .jumbotron {
     background-color: #FFFFFF;
 }

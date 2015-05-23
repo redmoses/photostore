@@ -13,9 +13,8 @@
                    placeholder="Photo URL" required>
 
             <div class="col-md-12">
-                <div data-ng-show="message != ''">
-                    <div class="alert alert-success" role="alert" data-ng-bind="message"></div>
-                    <img src="{{ photo }}" class="img-thumbnail">
+                <div class="text-center">
+                    <img src="{{ photo || 'http://placehold.it/200&text=Browse%20Image' }}" class="img-thumbnail">
                     <hr/>
                 </div>
             </div>
@@ -26,7 +25,7 @@
                        required>
 
                 <span class="btn btn-default btn-file input-group-addon">
-                    <span class="glyphicon glyphicon-folder-open"></span>
+                    {{browseButton || 'Browse'}}&nbsp;<span class="glyphicon glyphicon-folder-open"></span>
                     <input id="upload" name="upload" data-ng-model="upload"
                            type="file" class="form-control" file-model="momentPhoto"
                            ng-disabled="uploading">
@@ -40,6 +39,9 @@
                 <span class="glyphicon glyphicon-share"></span>
                 Share
             </button>
+            <div data-ng-show="message" class="text-success">
+                <strong data-ng-bind="message"></strong>
+            </div>
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>

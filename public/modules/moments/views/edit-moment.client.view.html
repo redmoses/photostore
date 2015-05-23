@@ -8,14 +8,12 @@
     </div>
     <form class="form-horizontal" data-ng-submit="update()" novalidate>
         <div class="modal-body">
-            <!--<input type="hidden" data-ng-model="moment.photo" id="photo" class="form-control"-->
-                   <!--placeholder="Photo URL" required>-->
 
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert" data-ng-show="message != ''" data-ng-bind="message"></div>
-                <img src="{{ moment.photo }}" class="img-thumbnail" data-ng-bind="moment.photo">
-                <hr/>
-
+                <div class="text-center">
+                    <img src="{{ moment.photo }}" class="img-thumbnail" data-ng-bind="moment.photo">
+                    <hr/>
+                </div>
             </div>
 
             <div class="input-group">
@@ -24,7 +22,7 @@
                        required>
 
                 <span class="btn btn-default btn-file input-group-addon">
-                    <span class="glyphicon glyphicon-folder-open"></span>
+                    {{browseButton || 'Change Image'}}&nbsp;<span class="glyphicon glyphicon-folder-open"></span>
                     <input id="upload" name="upload" data-ng-model="upload"
                            type="file" class="form-control" file-model="momentPhoto"
                            ng-disabled="uploading">
@@ -38,6 +36,9 @@
                 <span class="glyphicon glyphicon-save"></span>
                 Save
             </button>
+            <div data-ng-show="message" class="text-success">
+                <strong data-ng-bind="message"></strong>
+            </div>
             <div data-ng-show="error" class="text-danger">
                 <strong data-ng-bind="error"></strong>
             </div>
