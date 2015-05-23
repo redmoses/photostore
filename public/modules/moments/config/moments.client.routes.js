@@ -12,10 +12,6 @@ angular.module('moments').config(['$stateProvider',
             state('mymoments', {
                 url: '/moments/mine',
                 templateUrl: 'modules/moments/views/mymoments.client.view.html'
-            }).
-            state('editMoment', {
-                url: '/moments/:momentId/edit',
-                templateUrl: 'modules/moments/views/edit-moment.client.view.html'
             });
     }
 ]);

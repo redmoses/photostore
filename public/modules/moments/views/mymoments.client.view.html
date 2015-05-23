@@ -33,7 +33,7 @@
 				</div>
 				<div class="pull-right"
 					 data-ng-show="((authentication.user) && (authentication.user._id == moment.user._id))">
-					<a class="btn btn-primary" href="/#!/moments/{{moment._id}}/edit">
+					<a class="btn btn-primary" data-ng-click="openEditor(moment._id)">
 						<i class="glyphicon glyphicon-edit"></i>
 					</a>
 					<a class="btn btn-primary" data-ng-click="remove(moment);">

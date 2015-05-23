@@ -98,9 +98,20 @@ angular.module('moments').controller('MomentsController',
 
             // Find existing Moment
             $scope.findOne = function () {
+                alert($scope.momentId);
                 $scope.moment = Moments.get({
-                    //momentId: $stateParams.momentId
                     momentId: $scope.momentId
+                });
+            };
+
+            // open editor modal
+            $scope.openEditor = function (id) {
+                Moments.get({momentId: id}, function (data) {
+                    $scope.moment = data;
+                    $modal.open({
+                        templateUrl: 'modules/moments/views/edit-moment.client.view.html',
+                        scope: $scope
+                    });
                 });
             };
 
@@ -139,15 +150,5 @@ angular.module('moments').controller('MomentsController',
                     templateUrl: 'modules/moments/views/create-moment.client.view.html'
                 });
             };
-
-            $scope.openEditor = function (momentId) {
-                $scope.moment = Moments.get({
-                    momentId: momentId
-                });
-                $modal.open({
-                    templateUrl: 'modules/moments/views/edit-moment.client.view.html'
-                });
-            };
-
         }
     ]);
